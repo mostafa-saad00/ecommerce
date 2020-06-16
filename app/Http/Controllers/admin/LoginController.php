@@ -15,10 +15,11 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
     {
-    	if (auth()->guard('admin')->attempt(['email' => $request->input('email'), 'password' => $request->input('password')]) )
+    	if (auth()->guard('web')->attempt(['email' => $request->input('email'), 'password' => $request->input('password'), 'roles' => 'admin']) )
     	{
+            
     		return redirect()->route('admin.dashboard');
     	}
-    	return "no record";
+    	return back();
     }
 }
