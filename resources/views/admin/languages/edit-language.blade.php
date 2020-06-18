@@ -49,21 +49,50 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span> Abbr</label>
                                         <input class="form-control col-xl-8 col-md-7" value="{{ $language->abbr }}" id="validationCustom0" type="text" name="abbr" required="">
+                                        @error('abbr')
+                                        <div class="col-xl-3 col-md-4"></div>
+                                        <span class="text-danger"><span>*</span>{{$message}}</span>
+                                        @enderror
                                     </div>
                                     <div class="form-group row">
                                         <label for="validationCustom1" class="col-xl-3 col-md-4"><span>*</span> Locale</label>
                                         <input class="form-control col-xl-8 col-md-7" value="{{ $language->locale }}" id="validationCustom1" name="locale" type="text" required="">
+                                        @error('locale')
+                                        <div class="col-xl-3 col-md-4"></div>
+                                        <span class="text-danger"><span>*</span>{{$message}}</span>
+                                        @enderror
                                     </div>
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span> Name</label>
                                         <input class="form-control col-xl-8 col-md-7" value="{{ $language->name }}" id="validationCustom0" name="name" type="text" required="">
+                                        @error('name')
+                                        <div class="col-xl-3 col-md-4"></div>
+                                        <span class="text-danger"><span>*</span>{{$message}}</span>
+                                        @enderror
                                     </div>
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span> Direction</label>
                                         <select class="custom-select col-md-7" name="direction" required="">
-                                            <option value="ltr">ltr</option>
-                                            <option value="rtl">rtl</option>
+                                            <option @if($language->direction == 'ltr') selected @endif value="ltr">ltr</option>
+                                            <option @if($language->direction == 'rtl') selected @endif value="rtl">rtl</option>
                                         </select>
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span style="color: red">*</span> Status</label>
+                                        
+                                        <div class="col-xl-9 col-sm-8">
+                                            <div class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                <label class="d-block" for="edo-ani1">
+                                                    <input class="radio_animated" id="edo-ani1" type="radio" value="1" name="active" @if($language->active == 'active') checked @endif>
+                                                    active
+                                                </label>
+                                                <label class="d-block" for="edo-ani2">
+                                                    <input class="radio_animated" id="edo-ani2" type="radio" value="0" name="active" @if($language->active == 'inactive') checked @endif>
+                                                    inactive
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                     
                                     <div class="pull-right">

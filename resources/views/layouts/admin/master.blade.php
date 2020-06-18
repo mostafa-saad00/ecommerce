@@ -27,7 +27,7 @@
 
     <!-- Datatable css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
-
+    
     <!-- Prism css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/prism.css') }}">
 
@@ -138,6 +138,7 @@
 
 <!--script admin-->
 <script src="{{ asset('assets/js/admin-script.js') }}"></script>
+
 
 </body>
 </html>

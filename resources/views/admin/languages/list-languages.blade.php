@@ -45,6 +45,7 @@
                         <th>abbr</th>
                         <th>locale</th>
                         <th>direction</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -55,13 +56,43 @@
                         <td>{{ $language->abbr }}</td>
                         <td>{{ $language->locale }}</td>
                         <td>{{ $language->direction }}</td>
+                        <td>{{ $language->active }}</td>
                         <td>
                             <div>
                                 <a href="{{ route('admin.language.edit', $language->id) }}"><i class="fa fa-edit mr-2 font-success"></i></a>
-                                <a href=""><i class="fa fa-trash font-danger"></i></a>
+                                <a href="#" data-languageid="{{ $language->id }}" data-toggle="modal" data-target="#{{$language->id}}"><i class="fa fa-trash font-danger"></i></a>
                             </div>
                         </td>
                     </tr>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="{{ $language->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Delete confirmation</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <form method="POST" action="{{ route('admin.language.destroy', $language->id) }}">
+                              @csrf
+                              @method('DELETE')
+
+                              <div class="modal-body">
+                                <p class="text-center">Are you sure you want to delete {{ $language->name }} language?</p>
+                                
+                                
+                              </div>
+
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger">Yes, delete</button>
+                              </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
                     @endforeach
 
                     

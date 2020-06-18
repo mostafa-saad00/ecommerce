@@ -37,6 +37,8 @@
                     <div class="card-header">
                         <h5> Add Language</h5>
                     </div>
+                    @include('layouts.admin.includes.alerts.success')
+                    @include('layouts.admin.includes.alerts.errors')
                     <div class="card-body">
                         <ul class="nav nav-tabs tab-coupon" id="myTab" role="tablist">
                             <li class="nav-item"><a class="nav-link active show" id="account-tab" data-toggle="tab" href="#account" role="tab" aria-controls="account" aria-selected="true" data-original-title="" title="">Language info</a></li>
@@ -47,22 +49,51 @@
                                     @csrf
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span> Abbr</label>
-                                        <input class="form-control col-xl-8 col-md-7" id="validationCustom0" type="text" name="abbr" required="">
+                                        <input class="form-control col-xl-8 col-md-7" id="validationCustom0" type="text" name="abbr">
+                                        @error('abbr')
+                                        <div class="col-xl-3 col-md-4"></div>
+                                        <span class="text-danger"><span>*</span>{{$message}}</span>
+                                        @enderror
                                     </div>
                                     <div class="form-group row">
                                         <label for="validationCustom1" class="col-xl-3 col-md-4"><span>*</span> Locale</label>
-                                        <input class="form-control col-xl-8 col-md-7" id="validationCustom1" name="locale" type="text" required="">
+                                        <input class="form-control col-xl-8 col-md-7" id="validationCustom1" name="locale" type="text">
+                                        @error('locale')
+                                        <div class="col-xl-3 col-md-4"></div>
+                                        <span class="text-danger"><span>*</span>{{$message}}</span>
+                                        @enderror
                                     </div>
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span> Name</label>
-                                        <input class="form-control col-xl-8 col-md-7" id="validationCustom0" name="name" type="text" required="">
+                                        <input class="form-control col-xl-8 col-md-7" id="validationCustom0" name="name" type="text">
+                                        @error('name')
+                                        <div class="col-xl-3 col-md-4"></div>
+                                        <span class="text-danger"><span>*</span>{{$message}}</span>
+                                        @enderror
                                     </div>
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span> Direction</label>
-                                        <select class="custom-select col-md-7" name="direction" required="">
+                                        <select class="custom-select col-md-7" name="direction">
                                             <option value="ltr">ltr</option>
                                             <option value="rtl">rtl</option>
                                         </select>
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span style="color: red">*</span> Status</label>
+                                        
+                                        <div class="col-xl-9 col-sm-8">
+                                            <div class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                <label class="d-block" for="edo-ani1">
+                                                    <input class="radio_animated" id="edo-ani1" type="radio" value="1" name="active" checked>
+                                                    active
+                                                </label>
+                                                <label class="d-block" for="edo-ani2">
+                                                    <input class="radio_animated" id="edo-ani2" type="radio" value="0" name="active">
+                                                    inactive
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                     
                                     <div class="pull-right">

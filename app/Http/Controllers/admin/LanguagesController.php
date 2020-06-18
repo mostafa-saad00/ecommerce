@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LanguageRequest;
-use App\Language;
+use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,7 +12,7 @@ class LanguagesController extends Controller
 {
     public function index()
     {
-    	$languages = Language::all();
+    	$languages = Language::paginate(PAGINATION_COUNT);
     	return view('admin.languages.list-languages', compact('languages'));
     }
 
@@ -28,8 +28,9 @@ class LanguagesController extends Controller
     		'locale' => $request->locale,
     		'name' => $request->name,
     		'direction' => $request->direction,
+            'active' => $request->active,
     	]);
-    	return back();
+        return back()->with('success', 'Language created successfully.');
     }
 
     public function edit(Language $language)
@@ -44,8 +45,16 @@ class LanguagesController extends Controller
     		'locale' => $request->locale,
     		'name' => $request->name,
     		'direction' => $request->direction,
+            'active' => $request->active,
     	]);
 
-    	return redirect()->route('admin.languages.list');
+    	return back()->with('success', 'Language updated successfully.');
+    }
+
+    public function destroy(Language $language)
+    {
+    	$language->delete();
+
+    	return back();
     }
 }
