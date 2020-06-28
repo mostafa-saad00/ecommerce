@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 
@@ -8,6 +9,7 @@ Auth::routes();
 Route::get('/', function () {
     return view('front.home');
 });
+
 
 
 

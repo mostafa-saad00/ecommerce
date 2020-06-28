@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Create Language')
+@section('title', 'Edit Language')
 
 @section('content')
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Category extends Model
 {
@@ -13,11 +14,9 @@ class Category extends Model
     	return $query->where('active', 1);
     }
 
-    public static function save_image($requestData)
+
+    public function getActiveAttribute($val)
     {
-	    $photo = $requestData->file('photo');
-	    $photo_name = time() . '.' . $photo->getClientOriginalName();
-	    $photo->move(public_path('/category_photos'), $photo_name);
-	    return $photo_name;
+        return $val == 1 ? 'active' : 'inactive';
     }
 }

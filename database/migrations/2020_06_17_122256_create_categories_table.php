@@ -19,7 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->Integer('translation_of');
             $table->string('name');
             $table->string('slug');
-            $table->string('photo');
+            $table->string('photo_url');
             $table->boolean('active')->default(1);
             $table->timestamps();
         });

@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class LanguagesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    } 
+    
     public function index()
     {
     	$languages = Language::paginate(PAGINATION_COUNT);

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryRequest extends FormRequest
+class EditCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'category' => 'required|array',
-            'photo' => 'required|mimes:png,jpg,jpeg',
+            'category' => 'required|array|min:' . getActiveLanguages()->count(),
+
 
             'category.*.name' => 'required|max:255',
             'category.*.slug' => 'required|max:255',

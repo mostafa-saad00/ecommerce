@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-lg-6">
                     <ol class="breadcrumb pull-right">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test" data-target="#exampleModal">Add category</button>
+                        <button type="button" class="btn btn-primary"  onclick="location.href='{{ route('admin.category.create') }}'">Add category</button>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -42,6 +42,23 @@
                                                 <div class="form-group mb-0">
                                                     <label for="validationCustom02" class="mb-1">Category Photo :</label>
                                                     <input class="form-control" name="photo" id="validationCustom02" type="file">
+                                                </div>
+                                                <div class="row">
+                                                    
+                                                    <label for="validationCustom0" class="col-xl-3 col-md-4"> Status :</label>
+                                                    
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block" for="edo-ani1">
+                                                                <input class="radio_animated" id="edo-ani1" type="radio" value="1" name="active" checked>
+                                                                active
+                                                            </label>
+                                                            <label class="d-block" for="edo-ani2">
+                                                                <input class="radio_animated" id="edo-ani2" type="radio" value="0" name="active">
+                                                                inactive
+                                                            </label>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -67,6 +84,8 @@
             <div class="card-header">
                 <h5>Category Details</h5>
             </div>
+            @include('layouts.admin.includes.alerts.success')
+            @include('layouts.admin.includes.alerts.errors')
             <div class="card-body vendor-table">
                 <table class="display" id="basic-1">
                     <thead>
@@ -82,13 +101,13 @@
                     <tr>
                         <td>
                             <div class="d-flex vendor-list">
-                                <img src="{{ asset('category_photos') }}/{{ $category->photo }}" alt="" class="img-fluid img-40 rounded-circle blur-up lazyloaded">
-                                <span>{{ $category->photo }}</span>
+                                <img src="{{ $category->photo_url }}" alt="" class="img-fluid img-40 rounded-circle blur-up lazyloaded">
+                                <span>{{ $category->slug }}</span>
                             </div>
                         </td>
                         
                         <td>{{ $category->name }}</td>
-                        <td>@if($category->active == 1) active @else inactive  @endif</td>
+                        <td>{{ $category->active }}</td>
                         
                         <td>
                             <div>

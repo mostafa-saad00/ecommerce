@@ -24,12 +24,16 @@ Route::delete('/destroy-language/{language}', 'admin\LanguagesController@destroy
 
 /* Categories routes */
 Route::get('/list-categories', 'admin\CategoriesController@index')->name('admin.categories.list');
+Route::get('/create-category', 'admin\CategoriesController@create')->name('admin.category.create');
 Route::post('/store-category', 'admin\CategoriesController@store')->name('admin.category.store');
-Route::get('/edit-category/{category}', 'admin\CategoriesController@edit')->name('admin.category.edit');
-// Route::put('/update-category/{category}', 'admin\CategoriesController@update')->name('admin.category.update');
+Route::get('/edit-category/{defaultcategory}', 'admin\CategoriesController@edit')->name('admin.category.edit');
+Route::put('/update-category/{defaultcategory}', 'admin\CategoriesController@update')->name('admin.category.update');
 Route::delete('/destroy-category/{category}', 'admin\CategoriesController@destroy')->name('admin.category.destroy');
 /* End Categories routes */
 
+Route::get('/test-helper', function(){
+	return getActiveLanguages();
+});
 
 
 
